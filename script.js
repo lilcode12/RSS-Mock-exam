@@ -2,7 +2,7 @@ window.addEventListener('DOMContentLoaded', function() {
     const warningsElement = document.getElementById('warnings');
 
     // Fetch the RSS feed
-    fetch('http://www.bom.gov.au/fwo/IDZ00060.warnings_wa.xml')
+    fetch('https://www.bom.gov.au/fwo/IDZ00060.warnings_wa.xml')
         .then(response => response.text())
         .then(data => {
             // Parse the XML data
