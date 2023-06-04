@@ -22,7 +22,6 @@ window.addEventListener('DOMContentLoaded', function() {
 
                 const listItem = document.createElement('li');
                 listItem.innerHTML = `<a href="${link}" target="_blank">${title}</a>`;
-
                 warnings.appendChild(listItem);
             }
 
