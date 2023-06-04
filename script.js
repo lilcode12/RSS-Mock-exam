@@ -1,35 +1,35 @@
-window.addeventlistner('DOMContentLoaded', function() {
+window.addEventListener('DOMContentLoaded', function() {
     const warningsElement = document.getElementById('warnings');
-    
-    // fetch the rss feed
+
+    // Fetch the RSS feed
     fetch('http://www.bom.gov.au/fwo/IDZ00060.warnings_wa.xml')
         .then(response => response.text())
         .then(data => {
             // Parse the XML data
             const parser = new DOMParser();
-            const xml = parser.parseFromString(data, 'txt/xml');
+            const xml = parser.parseFromString(data, 'text/xml');
 
-            //get all the item elements (weather warnings)
-            const items = xml.getElementByTagName('item');
+            // Get all the item elements (weather warnings)
+            const items = xml.getElementsByTagName('item');
 
-            // create a list to store the warnings
+            // Create a list to store the warnings
             const warnings = document.createElement('ul');
 
-            // iterate over each warning and create list items
-            for (let i = 0; < items.length; i++) {
-                const title = items[i].getElementByTagName('title')[0].textContent;
-                const link = items[i].getElementByTagName('link')[0].textContent;
+            // Iterate over each warning and create list items
+            for (let i = 0; i < items.length; i++) {
+                const title = items[i].getElementsByTagName('title')[0].textContent;
+                const link = items[i].getElementsByTagName('link')[0].textContent;
 
                 const listItem = document.createElement('li');
-                listItem.innerHTML = '<a href="${link}" target="_blank">${title}</a>';
+                listItem.innerHTML = `<a href="${link}" target="_blank">${title}</a>`;
 
                 warnings.appendChild(listItem);
             }
 
-            //append the list of warnings to the warnings element
+            // Append the list of warnings to the warnings element
             warningsElement.appendChild(warnings);
         })
         .catch(error => {
-            console.error('Error Fetching the RSS Feed:', error)
+            console.error('Error fetching the RSS feed:', error);
         });
 });
